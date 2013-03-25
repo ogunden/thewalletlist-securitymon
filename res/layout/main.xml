@@ -7,7 +7,80 @@
 <TextView
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:text="Hello World, MainActivity"
+    android:text="Email to monitor:"
     />
+<EditText
+    android:id="@+id/edittext_email"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+  />
+<Button
+    android:id="@+id/button_lookup"
+    android:text="@string/button_lookup"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:clickable="true"
+    android:onClick="doLookupButton"
+  />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearlayout_lookupres"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+  <TextView
+      android:id="@+id/textview_lookupres"
+      android:textSize="18dp"
+      android:gravity="center"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+    />
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:orientation="vertical"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/outer_rectangle_shape"
+      android:padding="10dp"
+      >
+   <TextView
+      android:id="@+id/textview_lookupres_email"
+      android:textSize="18dp"
+      android:gravity="center"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/inner_rectangle_shape"
+      android:textStyle="bold"
+      android:textColor="#ffffff"
+    />
+   <ImageView
+    android:src="@drawable/arrow_down_float"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    />
+   <TextView
+      android:id="@+id/textview_lookupres_result"
+      android:textSize="14dp"
+      android:gravity="center"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/inner_rectangle_shape"
+      android:textStyle="bold"
+      android:textColor="#ffffff"
+      android:typeface="monospace"
+    />
+  </LinearLayout>
+  <Button
+      android:id="@+id/button_done"
+      android:text="@string/button_done"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:layout_marginTop="10dp"
+      android:clickable="true"
+      android:onClick="doDoneButton"
+    />
+</LinearLayout>
 </LinearLayout>
 

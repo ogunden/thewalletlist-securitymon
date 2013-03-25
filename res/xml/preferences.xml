@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+ <PreferenceCategory
+   android:title="@string/pref_category_settings"
+   android:key="pref_key_settings">
+  <EditTextPreference
+      android:key="pref_email"
+      android:title="@string/pref_email"
+      android:summary="@string/pref_email_summary"
+      android:defaultValue=""/>
+  <CheckBoxPreference
+      android:key="pref_verified"
+      android:title="@string/pref_verified"
+      android:summary="@string/pref_verified_summary"
+      android:defaultValue="false"/>
+ </PreferenceCategory>
+</PreferenceScreen>

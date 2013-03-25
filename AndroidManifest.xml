@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.thewalletlist"
+      package="com.thewalletlist.securitymonitor"
       android:versionCode="1"
-      android:versionName="1.0">
-    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
-        <activity android:name="MainActivity"
-                  android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
+      android:versionName="1">
+
+ <uses-permission android:name="android.permission.INTERNET"/>
+ <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+ <application android:label="@string/app_name"
+              android:icon="@drawable/coinlist">
+
+  <receiver android:name="com.thewalletlist.securitymonitor.MyWidgetProvider">
+    <intent-filter>
+      <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+    </intent-filter>
+    <meta-data
+      android:name="android.appwidget.provider"
+      android:resource="@xml/widget_info" />
+  </receiver>
+
+  <activity android:name="com.thewalletlist.securitymonitor.MainActivity">
+   <intent-filter>
+    <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+      <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+   </intent-filter>
+  </activity>
+
+  <activity android:name="com.thewalletlist.securitymonitor.ConfirmChangeActivity"
+            android:label="@string/title_confirm_change_activity"/>
+
+  <service
+    android:name="com.thewalletlist.securitymonitor.UpdateWidgetService">
+  </service>
+
+ </application>
+
+
+ <uses-sdk android:minSdkVersion="8" />
 </manifest>

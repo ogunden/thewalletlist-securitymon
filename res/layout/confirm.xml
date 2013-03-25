@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/warning_header"
+    android:textSize="24dp"
+    android:textColor="#ff0000"
+    android:gravity="center"
+    />
+
+  <TextView
+      android:id="@+id/textview_orig_date"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textSize="18dp"
+    />
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:orientation="vertical"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/outer_rectangle_shape"
+      android:padding="10dp"
+      >
+   <TextView
+      android:id="@+id/textview_orig_email"
+      android:textSize="18dp"
+      android:gravity="center"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/inner_rectangle_shape"
+      android:textStyle="bold"
+      android:textColor="#ffffff"
+    />
+   <ImageView
+    android:src="@drawable/arrow_down_float"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    />
+   <TextView
+      android:id="@+id/textview_orig_result"
+      android:textSize="14dp"
+      android:gravity="center"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/inner_rectangle_shape"
+      android:textStyle="bold"
+      android:textColor="#ffffff"
+      android:typeface="monospace"
+    />
+  </LinearLayout>
+
+  <TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/warning_has_changed_to"
+    android:textSize="24dp"
+    android:gravity="center"
+    />
+
+  <TextView
+      android:id="@+id/textview_new_date"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textSize="18dp"
+    />
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:orientation="vertical"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/outer_rectangle_shape"
+      android:padding="10dp"
+      >
+   <TextView
+      android:id="@+id/textview_new_email"
+      android:textSize="18dp"
+      android:gravity="center"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/inner_rectangle_shape"
+      android:textStyle="bold"
+      android:textColor="#ffffff"
+    />
+   <ImageView
+    android:src="@drawable/arrow_down_float"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    />
+   <TextView
+      android:id="@+id/textview_new_result"
+      android:textSize="14dp"
+      android:gravity="center"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/inner_rectangle_shape"
+      android:textStyle="bold"
+      android:textColor="#ffffff"
+      android:typeface="monospace"
+    />
+  </LinearLayout>
+
+<Button
+    android:id="@+id/button_lookup"
+    android:text="@string/button_lookup"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:clickable="true"
+    android:onClick="doLookupButton"
+  />
+<Button
+    android:id="@+id/button_authorize"
+    android:text="@string/button_authorize"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:clickable="true"
+    android:onClick="doAuthorizeButton"
+  />
+<Button
+    android:id="@+id/button_website"
+    android:text="@string/button_website"
+    android:autoLink="web"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+  />
+</LinearLayout>
+

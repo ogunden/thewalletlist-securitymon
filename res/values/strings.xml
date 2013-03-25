@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MainActivity</string>
+  <string name="app_name">The Wallet List</string>
+
+  <string name="title_confirm_change_activity">something changed!</string>
+
+  <string name="pref_category_settings">settings</string>
+  <string name="pref_email">email</string>
+  <string name="pref_email_summary">email to monitor</string>
+  <string name="pref_verified">verify</string>
+  <string name="pref_verified_summary">(enter your email first)</string>
+
+  <string name="button_lookup">lookup now</string>
+  <string name="button_done">save and start monitoring</string>
+
+  <string name="warning_header">Warning:</string>
+  <string name="warning_has_changed_to">has changed to</string>
+
+  <string name="button_authorize">It\'s okay, I authorized the change</string>
+  <string name="button_website">https://thewalletlist.com/</string>
+
 </resources>

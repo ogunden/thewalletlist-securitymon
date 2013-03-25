@@ -1,0 +1,5 @@
+- BUG: why is the widget ID changing from when I initialize in MainActivity to
+  when I recall MainActivity by clicking on the widget?
+- switch to AlarmManager for better battery life
+- handle case when network is not connected
+- make a main non-widget activity
