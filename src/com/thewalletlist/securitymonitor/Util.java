@@ -100,6 +100,7 @@ public class Util {
   public static final int EMAIL_BLANK = 0;
   public static final int NO_CHANGE = 1;
   public static final int CHANGE = 2;
+  public static final int NOT_FOUND = 3;
   public static int update(SharedPreferences prefs, int widgetId) {
     String email = prefs.getString(C.getEmailKey(widgetId),"");
     if (email.equals("")) { return EMAIL_BLANK; }
@@ -109,6 +110,9 @@ public class Util {
       return NO_CHANGE;
     }
     String res = downloadReq(email);
+    if (res == null) {
+      return NOT_FOUND;
+    }
 
     Log.w(C.LOG, "email: " + email);
     Log.w(C.LOG, "saved: " + savedResult);

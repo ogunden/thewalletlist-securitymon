@@ -169,6 +169,10 @@ public class MainActivity extends Activity {
       } else if (updateResult == Util.EMAIL_BLANK) {
         Log.d(C.LOG, "email blank");
         Toast.makeText(MainActivity.this, "invalid email", Toast.LENGTH_LONG).show();
+      } else if (updateResult == Util.NOT_FOUND) {
+        Log.d(C.LOG, "email not found");
+        Toast.makeText(MainActivity.this,
+          "email not recognized. are you signed up on thewalletlist.com?", Toast.LENGTH_LONG).show();
       }
     }
   }
@@ -195,6 +199,10 @@ public class MainActivity extends Activity {
       // Update the widget via the service
       startService(intent);
 
+
+      Intent resultIntent = new Intent();
+      resultIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
+      setResult(Activity.RESULT_OK, resultIntent);
       finish();
     } else {
       Toast.makeText(this, "set your email and run a lookup first", Toast.LENGTH_LONG).show();

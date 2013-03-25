@@ -20,18 +20,11 @@ public class UpdateWidgetService extends Service {
 
   @Override
   public void onStart(Intent intent, int startId) {
-    Log.i(C.LOG, "Called");
 
     AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this
         .getApplicationContext());
 
     int[] allWidgetIds = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
-
-    ComponentName thisWidget = new ComponentName(getApplicationContext(),
-        MyWidgetProvider.class);
-    int[] allWidgetIds2 = appWidgetManager.getAppWidgetIds(thisWidget);
-    Log.w(C.LOG, "From Intent: " + String.valueOf(allWidgetIds.length));
-    Log.w(C.LOG, "Direct: " + String.valueOf(allWidgetIds2.length));
 
     for (int widgetId : allWidgetIds) {
 
@@ -45,23 +38,31 @@ public class UpdateWidgetService extends Service {
           R.layout.widget_layout);
 
       String email = prefs.getString(C.getEmailKey(widgetId), null);
+      if (email == null) {
+        continue;
+      }
       remoteViews.setTextViewText(R.id.email, email);
 
       // choose where to redirect when we click.
       Intent clickIntent = null;
 
       if (res == Util.NO_CHANGE) {
-        Log.w(C.LOG, "all is well " + widgetId);
+        Log.d(C.LOG, "all is well " + widgetId);
         remoteViews.setTextColor(R.id.email, Color.GREEN);
         clickIntent = new Intent(this.getApplicationContext(), MainActivity.class);
       } else if (res == Util.CHANGE) {
-        Log.w(C.LOG, "something changed!");
+        Log.d(C.LOG, "something changed!");
         remoteViews.setTextColor(R.id.email, Color.RED);
         clickIntent = new Intent(this.getApplicationContext(), ConfirmChangeActivity.class);
       } else if (res == Util.EMAIL_BLANK) {
         // shouldn't happen
-        Log.w(C.LOG, "email not configured");
+        Log.d(C.LOG, "email not configured");
         clickIntent = new Intent(this.getApplicationContext(), MainActivity.class);
+      } else if (res == Util.NOT_FOUND) {
+        // happens if it was deleted from the server -- let's say something changed
+        Log.d(C.LOG, "email not found");
+        remoteViews.setTextColor(R.id.email, Color.RED);
+        clickIntent = new Intent(this.getApplicationContext(), ConfirmChangeActivity.class);
       }
 
       long lastUpdate = prefs.getLong(C.getLastDateKey(widgetId),0);
@@ -69,7 +70,6 @@ public class UpdateWidgetService extends Service {
         java.text.DateFormat.SHORT, java.text.DateFormat.SHORT).toString();
 
       remoteViews.setTextViewText(R.id.timestamp, rangeText);
-      Log.w(C.LOG, "putting range text: " + rangeText);
 
       //clickIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
       //clickIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -80,7 +80,6 @@ public class UpdateWidgetService extends Service {
          widgetId, clickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
       remoteViews.setOnClickPendingIntent(R.id.widgetpic, pendingIntent);
       appWidgetManager.updateAppWidget(widgetId, remoteViews);
-      Log.w(C.LOG, "done registering " + widgetId);
     }
     stopSelf();
 

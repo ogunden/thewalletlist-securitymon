@@ -26,6 +26,8 @@ public class ConfirmChangeActivity extends Activity {
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
+    setResult(Activity.RESULT_CANCELED);
+
     setContentView(R.layout.confirm);
 
     // Find the widget id from the intent.
@@ -57,12 +59,20 @@ public class ConfirmChangeActivity extends Activity {
     String savedResult = prefs.getString(C.getSavedResultKey(mAppWidgetId),null);
     Date savedDate = new Date(prefs.getLong(C.getSavedDateKey(mAppWidgetId),0));
     String lastResult = prefs.getString(C.getLastResultKey(mAppWidgetId),null);
+    if (lastResult == null) {
+      lastResult = "(email not found)";
+    }
     Date lastDate = new Date(prefs.getLong(C.getLastDateKey(mAppWidgetId),0));
 
-    if (email == null) finish();
-    if (savedResult == null) finish();
-    if (lastResult == null) finish();
-    if (savedResult.equals(lastResult)) finish();
+    assert (email != null);
+    assert (savedResult != null);
+
+    if (savedResult.equals(lastResult)) {
+      Intent resultIntent = new Intent();
+      resultIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
+      setResult(Activity.RESULT_OK, resultIntent);
+      finish();
+    }
 
     TextView origDate = (TextView) findViewById(R.id.textview_orig_date);
     origDate.setText(savedDate.toString());
