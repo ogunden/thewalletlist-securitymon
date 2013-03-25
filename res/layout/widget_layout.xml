@@ -9,6 +9,15 @@
     >
 
     <TextView
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="..."
+        android:textSize="8dp"
+        android:gravity="center"
+        />
+    <TextView
         android:id="@+id/timestamp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,14 +26,6 @@
         android:textSize="10dp"
         android:gravity="center"
         />
-    <TextView
-        android:id="@+id/status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:gravity="center"
-        android:text=""
-        android:textStyle="bold"/>
     <ImageView
         android:id="@+id/widgetpic"
         android:background="@drawable/coinlist"

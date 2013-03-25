@@ -93,6 +93,14 @@ public class ConfirmChangeActivity extends Activity {
     e.putLong(C.getSavedDateKey(mAppWidgetId),lastDate.getTime());
     e.apply();
 
+    // Build the intent to call the service
+    Intent intent = new Intent(this, UpdateWidgetService.class);
+    int[] widgetIds = { mAppWidgetId };
+    intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, widgetIds);
+
+    // Update the widget via the service
+    startService(intent);
+
     finish();
   }
 

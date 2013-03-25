@@ -44,18 +44,19 @@ public class UpdateWidgetService extends Service {
           .getApplicationContext().getPackageName(),
           R.layout.widget_layout);
 
+      String email = prefs.getString(C.getEmailKey(widgetId), null);
+      remoteViews.setTextViewText(R.id.email, email);
+
       // choose where to redirect when we click.
       Intent clickIntent = null;
 
       if (res == Util.NO_CHANGE) {
         Log.w(C.LOG, "all is well " + widgetId);
-        remoteViews.setTextColor(R.id.status, Color.GREEN);
-        remoteViews.setTextViewText(R.id.status, "OK");
+        remoteViews.setTextColor(R.id.email, Color.GREEN);
         clickIntent = new Intent(this.getApplicationContext(), MainActivity.class);
       } else if (res == Util.CHANGE) {
         Log.w(C.LOG, "something changed!");
-        remoteViews.setTextColor(R.id.status, Color.RED);
-        remoteViews.setTextViewText(R.id.status, "ALERT");
+        remoteViews.setTextColor(R.id.email, Color.RED);
         clickIntent = new Intent(this.getApplicationContext(), ConfirmChangeActivity.class);
       } else if (res == Util.EMAIL_BLANK) {
         // shouldn't happen
